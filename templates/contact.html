@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--Flask inherits everything from base.html-->
+{% extends "base.html" %}
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hello Flask</title>
-</head>
-
-<body>
-	<nav>
-		<ul>
-			<li>
-				<a href="{{ url_for('index') }}">Abhaile</a>
-			</li>
-			<li>
-				<a href="{{ url_for('about') }}">About</a>
-			</li>
-			<li>
-				<a href="{{ url_for('contact') }}">Contact</a>
-			</li>
-		</ul>
-	</nav>
-
-	<h1>Contact Us</h1>
-</body>
-
-</html>
+<!--Flask then looks for a block, which we called content, and injects this content into it-->
+{% block content %}
+<h1>Contact Us</h1>
+{% endblock %}
