@@ -4,8 +4,6 @@
 <!--Flask then looks for a block, which we called content, and injects this content into it-->
 {% block content %}
 
-{{ company[1]["name"] }}
-
 <h2>{{ page_title }}</h2>
 
 <p>
@@ -17,42 +15,22 @@
 	action. The superstitious Dwarves also considered thirteen to be an unlucky number, and as Gandalf had planned to
 	leave on other business, welcomed a fourteenth to fill into their party.
 </p>
+
+{% for member in company %}
+
 <div class="row featurette">
 	<div class="col-md-7">
-		<h3>Thorin Oakenfold</h3>
+		<h3>{{ member.name }}</h3>
 		<p>
-			In the year TA 2746, Thorin II was born to Dwarven prince Thráin II in the mountain city of The Lonely
-			Mountain. Early in his youth, he and the other Dwarves of the Lonely Mountain were forced to flee by the
-			dragon Smaug in TA 2770. While in exile, he quickly grew to become a capable warrior. This was demonstrated
-			when he participated in the Battle of Azanulbizar in TA 2799. He marched with one of the Dwarven armies
-			beneath the East-gate of Moria. At some point in the fighting, his shield broke, and using an oaken tree
-			branch found on the floor as a shield, he gained the epithet "Oakenshield," which would remain with him even
-			in death.[2]
-
-			Thorin eventually became King-in-Exile of Durin's Folk after his father went missing, and presumably died in
-			the dungeons of Dol Guldur.
+            {{ member.description }}
 		</p>
 	</div>
 	<div class="col-md-5">
-		<img src="https://vignette.wikia.nocookie.net/lotr/images/7/76/ThorinTDOMTextlessPoster.jpg/revision/latest/scale-to-width-down/686?cb=20140731214832" alt="Thorin">
+		<img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="member photo">
     </div>
-	</div>
-	<div class="row featurette">
-		<div class="col-md-5">
-			<img src="https://vignette.wikia.nocookie.net/lotr/images/b/b4/The-Hobbit-Fili-and-Kili.jpg/revision/latest?cb=20110714202952" alt="Fili and Kili">
-    </div>
-			<div class="col-md-7">
-				<h3>Fili and Kili</h3>
-				<p>
-					Fíli and Kíli were brothers, the youngest of the thirteen dwarves who set out with Thorin
-					Oakenshield's company, along with Gandalf and Bilbo Baggins, to reclaim the Lonely Mountain from the
-					dragon Smaug.
+</div>
+<hr class="featurette-divider">
 
-					Fíli and Kíli were the two most active dwarves of Thorin's company, and apart from Balin, and
-					possibly Bombur, they appeared more frequently as "individual" characters in Tolkien's novel than
-					the rest of Thorin's companions, who were most often named only in "group" references to the entire
-					company.
-				</p>
-			</div>
-		</div>
-		{% endblock %}
+{% endfor %}
+
+{% endblock %}
