@@ -1,13 +1,26 @@
 import os
 import json
-from flask import Flask, render_template, request, flash 
+from flask import Flask, render_template, request, flash
+
+# creating instance of Flask class "app"
+# app is Flask naming convention
+# the first argument of the Flask class is the name of the app's module
+# since we're just using one module we can use __name__ which is a
+# built-in Python variable
 
 app = Flask(__name__)
 app.secret_key = 'some_secret'
 
+# app.route decorator. @ symbol - pie-notation
+# browses to the root dir as indicated by "/"
+
+
 @app.route("/")
+# Flask triggers index function returns index.html
 def index():
+    # run render template function which is imported from Flask on line 3
     return render_template("index.html")
+    # Flask looks for files (e.g. index.html) in a directory named "templates"
 
 
 @app.route("/about")
@@ -43,8 +56,12 @@ def contact():
 def careers():
     return render_template("careers.html", page_title="Careers")
 
+# python main function - function which interpreter runs first
+
 
 if __name__ == "__main__":
+    # we run our app using the arguments passed here
+    # set debug to false before production / project submission
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
