@@ -1,6 +1,11 @@
 import os
+# import json library so app can read data from json file
 import json
 from flask import Flask, render_template, request, flash
+
+if os.path.exists("env.py"):
+    import env
+
 
 # creating instance of Flask class "app"
 # app is Flask naming convention
@@ -9,7 +14,7 @@ from flask import Flask, render_template, request, flash
 # built-in Python variable
 
 app = Flask(__name__)
-app.secret_key = 'some_secret'
+app.secret_key = os.environ.get("SECRET_KEY")
 
 # app.route decorator. @ symbol - pie-notation
 # browses to the root dir as indicated by "/"
@@ -26,8 +31,14 @@ def index():
 @app.route("/about")
 def about():
     data = []
+    # with block
+    # open data/company.json as read only ("r"), and assign to
+    # new variable "json_data"
     with open("data/company.json", "r") as json_data:
         data = json.load(json_data)
+    # "company=data"
+    # Assigns a new variable "company" that will be sent through to
+    # the HTML template == the list of data it's loading
     return render_template("about.html", page_title="About", company=data)
 
 
@@ -36,6 +47,7 @@ def about_member(member_name):
     member = {}
 
     with open("data/company.json", "r") as json_data:
+        # data - variable which holds loaded data in json format
         data = json.load(json_data)
         for obj in data:
             if obj["url"] == member_name:
@@ -48,7 +60,7 @@ def contact():
     if request.method == "POST":
         flash("Thanks {}, we have received your message".format(
             request.form["name"]))
-
+        print("Hello Cuntyhooks {}".format(request.form["name"]))
     return render_template("contact.html", page_title="Contact")
 
 

@@ -116,19 +116,24 @@
 						</li>
 					</ul>
 					<p class="copyright text-muted">
-						Copyright &copy; Your Website 2020
+						Copyright &copy; Your Website <span id="copyright"></span>
 					</p>
 				</div>
 			</div>
 		</div>
 	</footer>
 
-	<!-- Bootstrap core JavaScript -->
+	<!-- jQuery -->
 	<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	<!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-	<!-- Custom scripts for this template -->
+	<!-- Custom script for this template -->
 	<script src="{{ url_for('static', filename='js/clean-blog.min.js') }}"></script>
+    <!-- insert current year in footer-->
+    <script>
+        $("#copyright").text(new Date().getFullYear());
+    </script>
 </body>
 
 </html>

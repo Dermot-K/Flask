@@ -24,6 +24,7 @@
 	{% if loop.index % 2 !=0 %}
 
 	<div class="col-md-7">
+        <!--member.url is defined in the member name route in app.py-->
 		<h3> <a href="/about/{{ member.url }}"> {{ loop.index }}. {{ member.name }} </a></h3>
 		<p>
 			{{ member.description }}
@@ -46,8 +47,8 @@
 
 </div>
  
-{% if loop.index !=13 %}
-<hr class="featurette-divider">
+{% if loop.index != loop.length %}
+    <hr class="featurette-divider">
 {% endif%}
 
 {% endfor %}
